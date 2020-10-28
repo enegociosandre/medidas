@@ -1,0 +1,28 @@
+{
+  "id": 1,
+  "descricao": "Teste nome",
+  "dataCadastro": "03/07/2020",
+  "endereco": {
+    "id": 1,
+    "rua": "Rua teste",
+    "numero": null,
+    "complemento": null,
+    "bairro": null,
+    "cidade": null,
+    "cep": null,
+    "dataCadastro": "03/07/2020"
+  },
+  "pet": {
+    "id": 1,
+    "nome": "Teste nome",
+    "dataCadastro": "03/07/2020"
+  },
+  "cliente": {
+    "id": 1,
+    "nome": "Teste nome",
+    "email": null,
+    "telefone": null,
+    "celular": null,
+    "dataCadastro": "03/07/2020"
+  }
+}

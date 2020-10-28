@@ -1,0 +1,179 @@
+<h1 class="mt-4">Atendimentos</h1>
+<ol class="breadcrumb mb-4">
+	<li class="breadcrumb-item active">Listagem para consulta</li>
+</ol>
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+				{{ mensagemSucesso }}
+			</div>
+			<div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+				{{ mensagemErro }}
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-2">
+			<button class="btn btn-warning" (click)="novoCadastro()">
+				<i class="fa fa-plus"></i> Novo
+			</button>
+		</div>
+	</div>
+	<br />
+	<nav class="navbar">
+		<input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Digite sua busca aqui">
+	</nav>
+	<br />
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table table-condensed table-hover">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th class="full">Descrição</th>
+              <th class="full">Produto</th>
+              <th>Cliente</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let atendimento of atendimentos | filter:filter; let i = index">
+							<td>{{ atendimento.id }}</td>
+							<td class="full"><small>{{ atendimento.descricao }}</small></td>
+              <td class="full">{{ atendimento.pet.nome }}</td>
+              <td>{{ atendimento.cliente.nome }}</td>
+              <td style="white-space:nowrap;">
+                <button title="Cliente" class="btn btn-info ml-1"
+								data-toggle="modal" data-target="#modalCliente" (click)="preparaDelecao(atendimento)">
+								<i class="fa fa-user-tag"></i>
+							</button>
+								<button title="Dados" class="btn btn-info ml-1"
+								data-toggle="modal" data-target="#modalDados" (click)="preparaDelecao(atendimento)">
+								<i class="fa fa-eye"></i>
+							</button>
+							<button title="Endereço" class="btn btn-info ml-1"
+							data-toggle="modal" data-target="#modalEndereco" (click)="preparaDelecao(atendimento)">
+							<i class="fa fa-map-marker-alt"></i>
+						</button>
+						<button title="Editar" class="btn btn-primary ml-1"
+						routerLink="/atendimentos-form/{{ atendimento.id }}">
+						<i class="fa fa-edit"></i>
+					</button>
+					<button title="Remover" tabindex="0"  class="btn btn-danger ml-1"
+					data-toggle="modal" data-target="#modalDelecao" (click)="preparaDelecao(atendimento)">
+					<i class="fa fa-trash"></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="modalDelecao" class="modal fase" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>Confirmação</h4>
+			</div>
+			<div class="modal-body" *ngIf="atendimentoSelecionado">
+				Confirma a deleção do(a) imóvel <b>{{ atendimentoSelecionado.titulo }}</b>?
+			</div>
+
+			<div class="modal-footer">
+				<button class="btn btn-danger" (click)="deletarAtendimento()"
+				data-dismiss="modal">Confirmar</button>
+				<button class="btn btn-default" data-dismiss="modal">Cancela</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="modalDados" class="modal fase" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div><h4>Atendimento</h4></div>
+				<div><button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i></button></div>
+      </div>
+      <div class="modal-body" *ngIf="atendimentoSelecionado">
+        <div>
+          <br />
+          <p><i class="fa fa-users"></i> {{ atendimentoSelecionado.cliente.nome }}</p>
+          <p><i class="fa fa-mobile"></i> {{ atendimentoSelecionado.cliente.celular }}</p>
+          <p><i class="fa fa-envelope"></i> {{ atendimentoSelecionado.cliente.email }}</p>
+          <p><i class="fa fa-phone"></i> {{ atendimentoSelecionado.cliente.telefone }}</p>
+          <br />
+          <p><i class="fa fa-columns"></i> {{ atendimentoSelecionado.pet.nome }}</p>
+          <p>Descrição: {{ atendimentoSelecionado.descricao }}</p>
+          <p>CARTOLA: {{ atendimentoSelecionado.endereco.rua }}</p>
+          <p>ENRIJECIDO: {{ atendimentoSelecionado.endereco.numero }}</p>
+          <p>A: {{ atendimentoSelecionado.endereco.cidade }}</p>
+          <p>B: {{ atendimentoSelecionado.endereco.cep }}</p>
+          <p *ngIf="atendimentoSelecionado.pet.id === 2">C: {{ atendimentoSelecionado.endereco.complemento }}</p>
+          <p *ngIf="atendimentoSelecionado.pet.id === 2">D: {{ atendimentoSelecionado.endereco.bairro }}</p>
+          <p>Data de Cadastro: {{ atendimentoSelecionado.endereco.dataCadastro }}</p>
+        </div>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="modalEndereco" class="modal fase" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div><h4>Medidas</h4></div>
+				<div><button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i></button></div>
+			</div>
+			<div class="modal-body" *ngIf="atendimentoSelecionado">
+				<div class="rolagem">
+          <p>Descrição: {{ atendimentoSelecionado.descricao }}</p>
+          <p>CARTOLA: {{ atendimentoSelecionado.endereco.rua }}</p>
+          <p>ENRIJECIDO: {{ atendimentoSelecionado.endereco.numero }}</p>
+          <p>A: {{ atendimentoSelecionado.endereco.cidade }}</p>
+          <p>B: {{ atendimentoSelecionado.endereco.cep }}</p>
+          <p *ngIf="atendimentoSelecionado.pet.id === 2">C: {{ atendimentoSelecionado.endereco.complemento }}</p>
+          <p *ngIf="atendimentoSelecionado.pet.id === 2">D: {{ atendimentoSelecionado.endereco.bairro }}</p>
+          <p>Data de Cadastro: {{ atendimentoSelecionado.endereco.dataCadastro }}</p>
+				</div>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="modalCliente" class="modal fase" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div><h4> <i class="fa fa-user-friends"></i>  Cliente</h4></div>
+				<div><button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i></button></div>
+        <br />
+      </div>
+			<div class="modal-body" *ngIf="atendimentoSelecionado">
+				<div class="rolagem">
+          <br />
+					<p><i class="fa fa-users"></i> {{ atendimentoSelecionado.cliente.nome }}</p>
+					<p><i class="fa fa-mobile"></i> {{ atendimentoSelecionado.cliente.celular }}</p>
+					<p><i class="fa fa-envelope"></i> {{ atendimentoSelecionado.cliente.email }}</p>
+					<p><i class="fa fa-phone"></i> {{ atendimentoSelecionado.cliente.telefone }}</p>
+				</div>
+			</div>
+			<div class="modal-footer" *ngIf="atendimentoSelecionado">
+        <mark><i class="fa fa-calendar-alt"></i> Data de Cadastro: {{ atendimentoSelecionado.cliente.dataCadastro }}</mark>
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>

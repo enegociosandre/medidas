@@ -1,0 +1,51 @@
+##### H2 #####
+database
+mem.script
+mem.tmp
+mem.lck
+mem.log
+mem.properties
+mem.script
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+application.yml
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.vscode/
+
+### Others ###
+
+app/database/
+app/mem.lck
+app/mem.log
+app/mem.properties
+app/mem.script
+ui/.vscode/
+ui/dist/
+ui/node_modules/
+.idea
+app/.classpath
+app/.factorypath
+app/.project
+app/.settings/org.eclipse.core.resources.prefs
+app/.settings/org.eclipse.jdt.apt.core.prefs
+app/.settings/org.eclipse.jdt.core.prefs
+app/.settings/org.eclipse.m2e.core.prefs
+org.eclipse.jdt.apt.core.prefs
+org.eclipse.core.resources.prefs
+org.eclipse.jdt.core.prefs
+org.eclipse.m2e.core.prefs
+.settings/org.eclipse.m2e.core.prefs
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.jdt.apt.core.prefs
+.settings/org.eclipse.core.resources.prefs

@@ -1,0 +1,168 @@
+<h1 class="mt-4">Atendimentos</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">{{ atendimento.id ? 'Edição' : 'Cadastro' }}</li>
+</ol>
+<div class="container">
+  <form #atendimentoForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-success" role="alert" *ngIf="success">
+          Atendimento salvo/atualizado com sucesso!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngFor="let error of errors">
+          {{ error }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="atendimento.id">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>ID:</label>
+          <input type="text" class="form-control" name="id"
+          [ngModel]="atendimento.id" disabled="true" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Data Cadastro:</label>
+          <input type="text" class="form-control" name="dataCadastro"
+                [ngModel]="atendimento.dataCadastro" disabled="true" />
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Descrição: </label>
+          <textarea class="form-control" maxlength="80"
+          [(ngModel)]="atendimento.descricao" name="descricao"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Cliente: </label>
+          <select class="form-control" name="cliente"
+                  [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="atendimento.cliente.id">
+            <option value="">Selecione ...</option>
+            <option *ngFor="let cliente of clientes"
+                    [ngValue]="cliente.id">
+              {{ cliente.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Produto: </label>
+          <select class="form-control" name="pet"
+                  [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="atendimento.pet.id">
+            <option value="">Selecione ...</option>
+            <option *ngFor="let pet of pets"
+                    [ngValue]="pet.id">
+              {{ pet.nome }}
+            </option>
+          </select>
+          <div class="modal-body" *ngIf="atendimento.pet.id === 1">
+            <img src="medidas/assets/img/u.jpg">
+          </div>
+          <div class="modal-body" *ngIf="atendimento.pet.id === 2">
+            <img src="medidas/assets/img/batente.jpg">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ol class="breadcrumb mb-4">
+      <li class="breadcrumb-item active">Medidas</li>
+    </ol>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>CARTOLA: </label>
+            <select class="form-control" name="rua"
+                  [ngModelOptions]="{standalone: true}"
+                  [(ngModel)]="atendimento.endereco.rua">
+            <option selected value="{{ atendimento.endereco.rua }}">{{ atendimento.endereco.rua }}</option>
+            <option value="Não">Não</option>
+            <option value="Sim">Sim</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>ENRIJECIDO: </label>
+          <select class="form-control" name="numero"
+              [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="atendimento.endereco.numero">
+            <option selected value="{{ atendimento.endereco.numero }}">{{ atendimento.endereco.numero }}</option>
+            <option value="Não">Não</option>
+            <option value="Sim">Sim</option>
+        </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>A: </label>
+          <input type="text" class="form-control" [textMask]="{mask: mask}"
+                  [(ngModel)]="atendimento.endereco.cidade" name="cidade" />
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>B: </label>
+          <input type="text" class="form-control" [textMask]="{mask: mask}"
+                  [(ngModel)]="atendimento.endereco.cep" name="cep" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6"  *ngIf="atendimento.pet.id === 2">
+        <div class="form-group">
+          <label>C: </label>
+          <input type="text" class="form-control" [textMask]="{mask: mask}"
+                  [(ngModel)]="atendimento.endereco.complemento" name="complemento" />
+        </div>
+      </div>
+      <div class="col-md-6" *ngIf="atendimento.pet.id === 2">
+        <div class="form-group">
+          <label>D: </label>
+          <input type="text" class="form-control" [textMask]="{mask: mask}"
+                  [(ngModel)]="atendimento.endereco.bairro" name="bairro" />
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <button type="submit" class="btn btn-success ml-1" *ngIf="!atendimento.id">
+          <i class="fa fa-save"></i> Salvar
+        </button>
+
+        <button type="submit" class="btn btn-primary  ml-1" *ngIf="atendimento.id">
+          <i class="fa fa-sync-alt"></i> Atualizar
+        </button>
+
+        <button type="button" class="btn btn-success ml-1" routerLink="/atendimentos-print/{{ atendimento.id }}">
+          <i class="fa fa-sync-alt"></i> Imprimir
+        </button>
+
+        <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+          <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

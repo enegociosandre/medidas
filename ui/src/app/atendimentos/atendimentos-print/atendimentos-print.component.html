@@ -1,0 +1,88 @@
+<div class="no-print">
+  <h1 class="mt-4">Atendimentos</h1>
+  <ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Impressão</li>
+  </ol>
+</div>
+
+<div class="modal-body" *ngIf="atendimento" fxLayoutAlign="center start">
+  <h3>Atendimento: {{ atendimento.id }}</h3>
+  <div class="modal-body" *ngIf="atendimento.pet.id === 1">
+    <img src="medidas/assets/img/u.jpg" />
+  </div>
+  <div class="modal-body" *ngIf="atendimento.pet.id === 2">
+    <img src="medidas/assets/img/batente.jpg" />
+  </div>
+
+  <div>
+    <br />
+    <p><i class="fa fa-users"></i> {{ atendimento.cliente.nome }}</p>
+    <p><i class="fa fa-mobile"></i> {{ atendimento.cliente.celular }}</p>
+    <p><i class="fa fa-envelope"></i> {{ atendimento.cliente.email }}</p>
+    <p><i class="fa fa-phone"></i> {{ atendimento.cliente.telefone }}</p>
+    <br />
+    <p><i class="fa fa-columns"></i> {{ atendimento.pet.nome }}</p>
+    <p>Descrição: {{ atendimento.descricao }}</p>
+    <p>CARTOLA: {{ atendimento.endereco.rua }}</p>
+    <p>ENRIJECIDO: {{ atendimento.endereco.numero }}</p>
+    <p>A: {{ atendimento.endereco.cidade }}</p>
+    <p>B: {{ atendimento.endereco.cep }}</p>
+    <p *ngIf="atendimento.pet.id === 2">
+      C: {{ atendimento.endereco.complemento }}
+    </p>
+    <p *ngIf="atendimento.pet.id === 2">D: {{ atendimento.endereco.bairro }}</p>
+    <p>Data de Registro: {{ atendimento.endereco.dataCadastro }}</p>
+  </div>
+
+  <p>Assinatura: ___________________________</p>
+
+  <div class="no-print">
+    <input
+      type="button"
+      value="Print"
+      class="btn btn-success ml-1"
+      onclick="window.print();return false;"
+    />
+
+    <button
+      type="button"
+      class="btn btn-danger ml-1"
+      (click)="voltarParaListagem()"
+    >
+      <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+    </button>
+  </div>
+</div>
+
+<br>
+<p>----------------------------------------------</p>
+
+<div class="modal-body" *ngIf="atendimento" fxLayoutAlign="center start">
+  <h3>Atendimento: {{ atendimento.id }}</h3>
+  <div class="modal-body" *ngIf="atendimento.pet.id === 1">
+    <img src="medidas/assets/img/u.jpg" />
+  </div>
+  <div class="modal-body" *ngIf="atendimento.pet.id === 2">
+    <img src="medidas/assets/img/batente.jpg" />
+  </div>
+
+  <div>
+    <br />
+    <p><i class="fa fa-users"></i> {{ atendimento.cliente.nome }}</p>
+    <p><i class="fa fa-mobile"></i> {{ atendimento.cliente.celular }}</p>
+    <p><i class="fa fa-envelope"></i> {{ atendimento.cliente.email }}</p>
+    <p><i class="fa fa-phone"></i> {{ atendimento.cliente.telefone }}</p>
+    <br />
+    <p><i class="fa fa-columns"></i> {{ atendimento.pet.nome }}</p>
+    <p>Descrição: {{ atendimento.descricao }}</p>
+    <p>CARTOLA: {{ atendimento.endereco.rua }}</p>
+    <p>ENRIJECIDO: {{ atendimento.endereco.numero }}</p>
+    <p>A: {{ atendimento.endereco.cidade }}</p>
+    <p>B: {{ atendimento.endereco.cep }}</p>
+    <p *ngIf="atendimento.pet.id === 2">
+      C: {{ atendimento.endereco.complemento }}
+    </p>
+    <p *ngIf="atendimento.pet.id === 2">D: {{ atendimento.endereco.bairro }}</p>
+    <p>Data de Registro: {{ atendimento.endereco.dataCadastro }}</p>
+  </div>
+</div>

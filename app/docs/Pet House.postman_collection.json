@@ -1,0 +1,1026 @@
+{
+	"info": {
+		"_postman_id": "71cbeb6d-0c30-4065-9c6c-74030ba289cd",
+		"name": "Pet House",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "INCLUIR CLIENTE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "71e3c064-80dc-4dde-aa3a-f04d72a85217",
+						"exec": [
+							"var bodyData = JSON.parse(responseBody)\r",
+							"pm.environment.set(\"idCliente\",bodyData.id)\r",
+							"console.log(\"ID Cliente \" + pm.environment.get(\"idCliente\"));\r",
+							"tests[\"Cadastrou o cliente\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o nome\", function () { \r",
+							"        pm.expect(jsonData.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"nome\": \"Teste Nome\",\r\n \"email\": \"Teste Email\",\r\n \"telefone\": \"(19) 98950-1551\", \r\n \"celular\":  \"(19) 98950-1551\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}clientes",
+					"host": [
+						"{{url}}clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCLUIR MAIS UM CLIENTE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ef3530dd-86a6-4d52-8041-a66d266b8564",
+						"exec": [
+							"var bodyData = JSON.parse(responseBody)\r",
+							"pm.environment.set(\"idOutroCliente\",bodyData.id)\r",
+							"console.log(\"ID Outro Cliente \" + pm.environment.get(\"idOutroCliente\"));\r",
+							"tests[\"Cadastrou outro cliente\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o nome\", function () { \r",
+							"        pm.expect(jsonData.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "4b4edbb1-8ba5-428a-a15d-7d4d60c8ea83",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"nome\": \"Teste Nome\",\r\n \"email\": \"Teste Email\",\r\n \"telefone\": \"(19) 98950-1551\", \r\n \"celular\":  \"(19) 98950-1551\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}clientes",
+					"host": [
+						"{{url}}clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCLUIR PET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "49714392-7908-436f-bec3-dbebe4c6fc68",
+						"exec": [
+							"var bodyData = JSON.parse(responseBody)\r",
+							"pm.environment.set(\"idPet\",bodyData.id)\r",
+							"console.log(\"ID Pet \" + pm.environment.get(\"idPet\"));\r",
+							"tests[\"Cadastrou o pet\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o nome\", function () { \r",
+							"        pm.expect(jsonData.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"nome\": \"Teste Nome\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}pets",
+					"host": [
+						"{{url}}pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCLUIR MAIS UM PET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9fdd544b-4104-45eb-b9a1-6c3f819e2ff8",
+						"exec": [
+							"var bodyData = JSON.parse(responseBody)\r",
+							"pm.environment.set(\"idOutroPet\",bodyData.id)\r",
+							"console.log(\"ID Outro Pet \" + pm.environment.get(\"idOutroPet\"));\r",
+							"tests[\"Cadastrou outro pet\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o nome\", function () { \r",
+							"        pm.expect(jsonData.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"nome\": \"Teste Nome\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}pets",
+					"host": [
+						"{{url}}pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCLUIR UM PET SEM NOME  DEVE RETORNAR BAD REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8c0d4a52-63c4-4163-8460-91222171d40c",
+						"exec": [
+							"tests[\"Impediu pet sem nome\"] = responseCode.code === 400;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o erro\", function () { \r",
+							"        pm.expect(jsonData.errors[0]).is.to.equal(\"O campo nome é obrigatório.\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}pets",
+					"host": [
+						"{{url}}pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCLUIR UM CLIENTE SEM NOME  DEVE RETORNAR BAD REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0e1599b6-b5cb-4ab1-8bed-cdafaf25186e",
+						"exec": [
+							"tests[\"Impediu cliente sem nome\"] = responseCode.code === 400;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o erro\", function () { \r",
+							"        pm.expect(jsonData.errors[0]).is.to.equal(\"O campo nome é obrigatório.\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}pets",
+					"host": [
+						"{{url}}pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BUSCAR CLIENTE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b5067450-e517-4938-9da5-ea8c129dc919",
+						"exec": [
+							"tests[\"Buscou cliente\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o nome\", function () { \r",
+							"        pm.expect(jsonData.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}clientes/{{idCliente}}",
+					"host": [
+						"{{url}}clientes"
+					],
+					"path": [
+						"{{idCliente}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BUSCAR CLIENTES",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0e16cc63-2b84-4f75-8348-a3a460e28bfc",
+						"exec": [
+							"tests[\"Buscou clientes\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o nome\", function () { \r",
+							"        pm.expect(jsonData[0].nome).is.to.equal(\"Teste Nome\"); \r",
+							"        pm.expect(jsonData[1].nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}clientes",
+					"host": [
+						"{{url}}clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BUSCAR PET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a7d7d765-0ce5-4d71-b34d-a08c9c0a8b4f",
+						"exec": [
+							"tests[\"Buscou pets\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o nome\", function () { \r",
+							"        pm.expect(jsonData.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}pets/{{idPet}}",
+					"host": [
+						"{{url}}pets"
+					],
+					"path": [
+						"{{idPet}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BUSCAR PETS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a06073a-ae02-4ab5-b7e7-0c23a828291c",
+						"exec": [
+							"tests[\"Buscou pet\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o nome\", function () { \r",
+							"        pm.expect(jsonData[0].nome).is.to.equal(\"Teste Nome\"); \r",
+							"        pm.expect(jsonData[1].nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}pets",
+					"host": [
+						"{{url}}pets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCLUIR ATENDIMENTO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7f2eaf99-256a-4948-a7e4-0d7f18d4f15e",
+						"exec": [
+							"\r",
+							"var bodyData = JSON.parse(responseBody)\r",
+							"pm.environment.set(\"idAtendimento\",bodyData.id)\r",
+							"pm.environment.set(\"idEndereco\",bodyData.endereco.id)\r",
+							"console.log(\"ID Atendimento \" + pm.environment.get(\"idAtendimento\"));\r",
+							"tests[\"Cadastrou atendimento\"] = responseCode.code === 201;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu a descrição\", function () { \r",
+							"        pm.expect(jsonData.descricao).is.to.equal(\"Teste descrição\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o endereço\", function () { \r",
+							"        pm.expect(jsonData.endereco.rua).is.to.equal(\"Teste rua\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o cliente\", function () { \r",
+							"        pm.expect(jsonData.cliente.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o pet\", function () { \r",
+							"        pm.expect(jsonData.pet.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "087eae17-11d3-4192-b67c-86a4dada58a5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descricao\": \"Teste descrição\",\r\n    \"endereco\": {\r\n        \"rua\": \"Teste rua\"\r\n    },\r\n    \"cliente\": {\r\n        \"id\": {{idCliente}},\r\n         \"nome\": \"Teste Nome\"\r\n    },\r\n    \"pet\": {\r\n        \"id\":{{idPet}},\r\n         \"nome\": \"Teste Nome\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}atendimentos",
+					"host": [
+						"{{url}}atendimentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCLUIR ATENDIMENTO SEM CAMPO DESCRIÇÃO DEVE RETORNAR BAD REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "873f1c1e-f277-43ab-9c16-f499844bb665",
+						"exec": [
+							"tests[\"Cadastrou atendimento\"] = responseCode.code === 400;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o erro\", function () { \r",
+							"        pm.expect(jsonData.errors[0]).is.to.contains(\"O campo Descrição é obrigatório\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"endereco\": {\r\n        \"rua\": \"Teste rua\"\r\n    },\r\n    \"cliente\": {\r\n        \"id\": {{idCliente}},\r\n         \"nome\": \"Teste Nome\"\r\n    },\r\n    \"pet\": {\r\n        \"id\":{{idPet}},\r\n         \"nome\": \"Teste Nome\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}atendimentos",
+					"host": [
+						"{{url}}atendimentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCLUIR ATENDIMENTO SEM CLIENTE DEVE RETORNAR BAD REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "36d03bb6-4e7c-4c2d-b41e-34343e1c8f09",
+						"exec": [
+							"tests[\"Cadastrou atendimento\"] = responseCode.code === 400;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o erro\", function () { \r",
+							"        pm.expect(jsonData.errors[0]).is.to.contains(\"O campo Cliente é obrigatório\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descricao\":\"Teste descrição\",\r\n    \"endereco\": {\r\n        \"rua\": \"Teste rua\"\r\n    },\r\n    \"pet\": {\r\n        \"id\":{{idPet}},\r\n         \"nome\": \"Teste Nome\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}atendimentos",
+					"host": [
+						"{{url}}atendimentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "INCLUIR ATENDIMENTO SEM PET DEVE RETORNAR BAD REQUEST",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0333fe1b-76f0-46b9-9e53-abf745999f33",
+						"exec": [
+							"tests[\"Cadastrou atendimento\"] = responseCode.code === 400;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o erro\", function () { \r",
+							"        pm.expect(jsonData.errors[0]).is.to.contains(\"O campo Pet é obrigatório\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descricao\":\"Teste descrição\",\r\n    \"endereco\": {\r\n        \"rua\": \"Teste rua\"\r\n    },\r\n    \"cliente\": {\r\n        \"id\":{{idCliente}},\r\n         \"nome\": \"Teste Nome\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}atendimentos",
+					"host": [
+						"{{url}}atendimentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BUSCAR ATENDIMENTO POR ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fdbb5233-90b7-4e4f-ae67-dc95565a0c19",
+						"exec": [
+							"tests[\"Exibiu atendimento\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu a Descrição\", function () { \r",
+							"        pm.expect(jsonData.descricao).is.to.equal(\"Teste descrição\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o endereço\", function () { \r",
+							"        pm.expect(jsonData.endereco.rua).is.to.equal(\"Teste rua\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o cliente\", function () { \r",
+							"        pm.expect(jsonData.cliente.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o pet\", function () { \r",
+							"        pm.expect(jsonData.pet.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}atendimentos/{{idAtendimento}}",
+					"host": [
+						"{{url}}atendimentos"
+					],
+					"path": [
+						"{{idAtendimento}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BUSCAR ATENDIMENTOS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "eb3165a3-2939-4711-954d-67f10f6a3e5f",
+						"exec": [
+							"tests[\"Exibiu atendimentos\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu a Descrição\", function () { \r",
+							"        pm.expect(jsonData[0].descricao).is.to.equal(\"Teste descrição\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o endereço\", function () { \r",
+							"        pm.expect(jsonData[0].endereco.rua).is.to.equal(\"Teste rua\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o cliente\", function () { \r",
+							"        pm.expect(jsonData[0].cliente.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o pet\", function () { \r",
+							"        pm.expect(jsonData[0].pet.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}atendimentos",
+					"host": [
+						"{{url}}atendimentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ALTERAR ATENDIMENTO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3978a0e6-a553-495c-93fd-79595192e8e5",
+						"exec": [
+							"tests[\"Alterou atendimento\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu a descrição\", function () { \r",
+							"        pm.expect(jsonData.descricao).is.to.equal(\"Teste Descrição alterada\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o endereço\", function () { \r",
+							"        pm.expect(jsonData.endereco.rua).is.to.equal(\"Teste rua alterada\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o cliente\", function () { \r",
+							"        pm.expect(jsonData.cliente.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o pet\", function () { \r",
+							"        pm.expect(jsonData.pet.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{idAtendimento}},\r\n    \"descricao\": \"Teste Descrição alterada\",\r\n    \"endereco\": {\r\n        \"id\":{{idEndereco}},\r\n        \"rua\": \"Teste rua alterada\"\r\n    },\r\n    \"cliente\": {\r\n        \"id\":{{idCliente}}\r\n    },\r\n    \"pet\": {\r\n        \"id\":{{idPet}}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}atendimentos/{{idAtendimento}}",
+					"host": [
+						"{{url}}atendimentos"
+					],
+					"path": [
+						"{{idAtendimento}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ALTERAR ATENDIMENTO OUTRO PET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "592bfd68-fc06-4cf1-b14f-62161430b1c4",
+						"exec": [
+							"tests[\"Alterou atendimento\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"    pm.test(\"Exibiu o endereço\", function () { \r",
+							"        pm.expect(jsonData.endereco.rua).is.to.equal(\"Teste rua alterada\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o pet\", function () { \r",
+							"        pm.expect(jsonData.pet.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{idAtendimento}},\r\n    \"descricao\": \"Teste Descrição alterada\",\r\n    \"endereco\": {\r\n        \"id\":{{idEndereco}},\r\n        \"rua\": \"Teste rua alterada\"\r\n    },\r\n    \"cliente\": {\r\n        \"id\":{{idCliente}}\r\n    },\r\n    \"pet\": {\r\n        \"id\":{{idOutroPet}}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}atendimentos/{{idAtendimento}}",
+					"host": [
+						"{{url}}atendimentos"
+					],
+					"path": [
+						"{{idAtendimento}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ALTERAR ATENDIMENTO OUTRO CLIENTE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "caf85894-9cd3-4445-8bd2-5d45433d7b47",
+						"exec": [
+							"tests[\"Alterou atendimento\"] = responseCode.code === 200;\r",
+							"var jsonData = pm.response.json(); \r",
+							"    pm.test(\"Exibiu o endereço\", function () { \r",
+							"        pm.expect(jsonData.endereco.rua).is.to.equal(\"Teste rua alterada\"); \r",
+							"    });\r",
+							"    pm.test(\"Exibiu o cliente\", function () { \r",
+							"        pm.expect(jsonData.cliente.nome).is.to.equal(\"Teste Nome\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{idAtendimento}},\r\n    \"descricao\": \"Teste Descrição alterada\",\r\n    \"endereco\": {\r\n        \"id\":{{idEndereco}},\r\n        \"rua\": \"Teste rua alterada\"\r\n    },\r\n    \"cliente\": {\r\n        \"id\":{{idOutroCliente}}\r\n    },\r\n    \"pet\": {\r\n        \"id\":{{idOutroPet}}\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}atendimentos/{{idAtendimento}}",
+					"host": [
+						"{{url}}atendimentos"
+					],
+					"path": [
+						"{{idAtendimento}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETAR ATENDIMENTO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8c3e8ebf-51f2-4cf4-ae8c-f101e468f346",
+						"exec": [
+							"tests[\"Deletou o atendimento\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}atendimentos/{{idAtendimento}}",
+					"host": [
+						"{{url}}atendimentos"
+					],
+					"path": [
+						"{{idAtendimento}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETAR PET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "679e9055-0ad2-4387-9164-e84767c03011",
+						"exec": [
+							"tests[\"Deletou o pet\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}pets/{{idPet}}",
+					"host": [
+						"{{url}}pets"
+					],
+					"path": [
+						"{{idPet}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VERIFICA SE DELETOU PET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "7ce3cc3f-0fb4-47a6-809b-6bf278c46ef8",
+						"exec": [
+							"tests[\"Deletou o pet\"] = responseCode.code === 500;\r",
+							"var jsonData = pm.response.json(); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}pets/{{idPet}}",
+					"host": [
+						"{{url}}pets"
+					],
+					"path": [
+						"{{idPet}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETAR OUTRO PET",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "89ffdbbe-316f-43e7-8756-f4178555c6c9",
+						"exec": [
+							"tests[\"Deletou o outro pet\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}pets/{{idOutroPet}}",
+					"host": [
+						"{{url}}pets"
+					],
+					"path": [
+						"{{idOutroPet}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETAR CLIENTE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d9578f32-522c-4bba-9f1b-548397f1d96e",
+						"exec": [
+							"tests[\"Deletou o cliente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}clientes/{{idCliente}}",
+					"host": [
+						"{{url}}clientes"
+					],
+					"path": [
+						"{{idCliente}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VERIFICA SE DELETOU CLIENTE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "506d5a68-3df6-489e-bff7-bb887fbe17d8",
+						"exec": [
+							"tests[\"Deletou o pet\"] = responseCode.code === 404;\r",
+							"var jsonData = pm.response.json(); \r",
+							"pm.test(\"Exibiu o erro\", function () { \r",
+							"        pm.expect(jsonData.errors[0]).is.to.contains(\"Cliente não encontrado\"); \r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}clientes/{{idCliente}}",
+					"host": [
+						"{{url}}clientes"
+					],
+					"path": [
+						"{{idCliente}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETAR OUTRO CLIENTE",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "09d710b0-4506-403e-8fec-75333374faaa",
+						"exec": [
+							"tests[\"Deletou o outro cliente\"] = responseCode.code === 204;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}clientes/{{idOutroCliente}}",
+					"host": [
+						"{{url}}clientes"
+					],
+					"path": [
+						"{{idOutroCliente}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "130643e2-421d-4bd1-a0e3-de2c217e4f3a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7529a28b-30f3-4fa7-91a2-c36019fbc2ed",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,107 @@
+<h1 class="mt-4">Produtos</h1>
+<ol class="breadcrumb mb-4">
+	<li class="breadcrumb-item active">Listagem para consulta</li>
+</ol>
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+				{{ mensagemSucesso }}
+			</div>
+			<div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+				{{ mensagemErro }}
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-2">
+			<button class="btn btn-warning" (click)="novoCadastro()">
+				<i class="fa fa-plus"></i> Novo
+			</button>
+		</div>
+	</div>
+	<br />
+	<nav class="navbar">
+		<input class="form-control" type="text" name="search" [(ngModel)]="filter" placeholder="Digite sua busca aqui">
+	</nav>
+	<br />
+	<div class="row">
+		<div class="col-md-12">
+			<div class="table-responsive">
+			<table class="table table-condensed table-hover">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Nome</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let pet of pets | filter:filter; let i = index">
+						<td>{{ pet.id }}</td>
+						<td class="fixo">{{ pet.nome }}</td>
+						<td>{{ pet.celular }}</td>
+						<td style="white-space:nowrap;">
+							<button class="btn btn-info ml-1"
+							data-toggle="modal" data-target="#modalConsulta" (click)="preparaDelecao(pet)">
+							<i class="fa fa-eye"></i>
+						</button>
+
+						<button class="btn btn-primary ml-1"
+						routerLink="/pets-form/{{ pet.id }}">
+						<i class="fa fa-edit"></i>
+					</button>
+
+					<button class="btn btn-danger ml-1"
+					data-toggle="modal" data-target="#modalDelecao" (click)="preparaDelecao(pet)">
+					<i class="fa fa-trash"></i>
+				</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="modalDelecao" class="modal fase" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4>Confirmação</h4>
+			</div>
+			<div class="modal-body" *ngIf="petSelecionado">
+				Confirma a deleção do(a) produto <b>{{ petSelecionado.nome }}</b>?
+			</div>
+
+			<div class="modal-footer">
+				<button class="btn btn-danger" (click)="deletarPet()"
+				data-dismiss="modal">Confirmar</button>
+				<button class="btn btn-default" data-dismiss="modal">Cancela</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="modalConsulta" class="modal fase" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<div><h4>Consulta</h4></div>
+				<div><button class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i></button></div>
+			</div>
+			<div class="modal-body" *ngIf="petSelecionado">
+				<div class="rolagem">
+					<h3><b>{{ petSelecionado.nome }}</b></h3>
+					<p>Data de Cadastro: {{ petSelecionado.dataCadastro }}</p>
+			</div>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+
+</div>
